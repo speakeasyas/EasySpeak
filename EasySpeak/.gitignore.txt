@@ -1,0 +1,21 @@
+﻿# Ignore Visual Studio temporary files, build results, and
+# folder-based project outputs
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.vcxproj.*
+*.csproj.user
+*.dbmdl
+[Bb]in/
+[Oo]bj/
+
+# Entity Framework Migrations
+Migrations/
+
+# Ignore files from NuGet Packages folder
+packages/
+
+# Ignore any compiled DLL files or EXE files
+*.dll
+*.exe

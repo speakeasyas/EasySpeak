@@ -1,0 +1,36 @@
+﻿@model IEnumerable<EasySpeak.Models.User>
+
+@{
+    ViewBag.Title = "Users";
+}
+
+<h2>Users</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Name)</th>
+            <th>@Html.DisplayNameFor(model => model.Email)</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Name</td>
+                <td>@user.Email</td>
+                <td>
+                    <a href="@Url.Action("Details", new { id = user.Id })" class="btn btn-info">View</a>
+                    <a href="@Url.Action("Edit", new { id = user.Id })" class="btn btn-warning">Edit</a>
+                    @if (user.LockoutEnd == null)
+                    {
+                        <a href="@Url.Action("Block", new { id = user.Id })" class="btn btn-danger">Block</a>
+                    }else{
+                    <a href="@Url.Action("Unblock", new { id = user.Id })" class="btn btn-success">Unblock</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

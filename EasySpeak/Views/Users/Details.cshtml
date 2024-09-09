@@ -1,0 +1,19 @@
+﻿@model EasySpeak.Models.User
+
+@{
+    ViewBag.Title = "User Details";
+}
+
+<h2>User Details</h2>
+
+<div class="card">
+    <div class="card-header">
+        User Information
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">@Model.UserName</h5>
+        <p class="card-text">Email: @Model.Email</p>
+        <p class="card-text">Phone: @Model.PhoneNumber</p>
+        <a href="@Url.Action("Index")" class="btn btn-primary">Back to List</a>
+    </div>
+</div>

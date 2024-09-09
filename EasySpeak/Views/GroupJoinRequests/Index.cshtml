@@ -1,0 +1,35 @@
+﻿@model IEnumerable<EasySpeak.Models.GroupJoinRequest>
+
+@{
+    ViewData["Title"] = "Group Join Requests";
+}
+
+<h2>Group Join Requests</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>User</th>
+            <th>Chat Room</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var request in Model)
+        {
+            <tr>
+                <td>@request.User.UserName (@request.User.Email)</td>
+                <td>@request.ChatRoom.Name</td>
+                <td>@request.Status</td>
+                <td>
+                    @if (request.Status == EasySpeak.Models.Status.Pending)
+                    {
+                        <a href="@Url.Action("Approve", "GroupJoinRequests", new { id = request.Id })" class="btn btn-success">Approve</a>
+                        <a href="@Url.Action("Reject", "GroupJoinRequests", new { id = request.Id })" class="btn btn-danger">Reject</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,137 @@
+﻿@model EasySpeak.Models.ChatRoom
+
+@{
+    ViewData["Title"] = Model.Name;
+}
+<style>
+    #chatMessages {
+        max-height: 300px;
+        overflow-y: auto;
+    }
+
+    .input-group-append {
+        display: flex;
+        align-items: center;
+    }
+
+    .input-group-append button {
+        margin-left: 5px;
+    }
+
+    .message {
+        margin-bottom: 10px;
+        padding: 10px;
+        border-radius: 10px;
+        background-color: #f0f0f0;
+        max-width: 70%;
+    }
+
+    .message .user {
+        font-weight: bold;
+        margin-right: 5px;
+    }
+
+    .message .timestamp {
+        font-size: 12px;
+        color: #888;
+    }
+
+    #messageForm {
+        margin-top: 10px;
+        width: 100%;
+    }
+
+    .message-input-container {
+        display: flex;
+        background-color: #f0f0f0;
+        border-radius: 10px;
+        padding: 10px;
+        width: 100%;
+    }
+
+    .message-input {
+        flex-grow: 1;
+        border: none;
+        font-size: 16px;
+        padding: 5px;
+        outline: none;
+    }
+
+    .input-buttons {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .emoji-button, .mic-button, .send-button {
+        background-color: #e0e0e0;
+        border: none;
+        cursor: pointer;
+        padding: 5px 10px;
+        border-radius: 5px;
+        transition: background-color 0.2s ease;
+    }
+
+    .emoji-button:hover, .mic-button:hover, .send-button:hover {
+        background-color: #d0d0d0;
+    }
+
+    .emoji-button i, .mic-button i, .send-button i {
+        font-size: 18px;
+    }
+</style>
+
+<h2>@Model.Name</h2>
+
+<div class="container mt-4">
+    <div id="chatMessages">
+        @foreach (var message in Model.Messages)
+        {
+                <div class="message">
+                    <span class="user">@message.User.Name:</span>
+                    <span>@message.Content</span>
+                    <small class="timestamp">(@message.Timestamp)</small>
+                </div>
+        }
+    </div>
+    <form id="messageForm" asp-action="SendMessage" asp-controller="Chat" method="post">
+        <input type="hidden" id="currentRoomId" name="roomId" value="@Model.Id" />
+        <div class="message-input-container">
+            <input type="text" class="message-input" id="messageInput" name="messageContent" placeholder="اكتب رسالة..." maxlength="250">
+            <div class="input-buttons">
+                <button type="button" class="emoji-button" id="emojiButton"><i class="fas fa-smile"></i></button>
+                <button type="button" class="mic-button" id="micButton"><i class="fas fa-microphone"></i></button>
+                <button type="submit" class="send-button" id="sendButton"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/5.0.7/signalr.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+        <script src="~/js/chat2.js" asp-append-version="true"></script>
+        <script>
+            function scrollToBottom() {
+                var $chatMessages = $('#chatMessages');
+                $chatMessages.scrollTop($chatMessages[0].scrollHeight);
+            }
+
+            $(document).ready(function () {
+                scrollToBottom();
+            });
+
+            function startSpeechRecognition() {
+                const recognition = new webkitSpeechRecognition() || new SpeechRecognition();
+                recognition.lang = 'ar';
+                recognition.onresult = function (event) {
+                    const messageInput = document.getElementById('messageInput');
+                    messageInput.value = event.results[0][0].transcript;
+                    messageInput.focus();
+                }
+                recognition.start();
+            }
+
+            document.getElementById('micButton').addEventListener('click', startSpeechRecognition);
+        </script>
+}

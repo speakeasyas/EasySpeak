@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasySpeak", "EasySpeak\EasySpeak.csproj", "{B2E7DC88-86BD-410E-9A5F-D2E74FF1294C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B2E7DC88-86BD-410E-9A5F-D2E74FF1294C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2E7DC88-86BD-410E-9A5F-D2E74FF1294C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2E7DC88-86BD-410E-9A5F-D2E74FF1294C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2E7DC88-86BD-410E-9A5F-D2E74FF1294C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FD9463B5-55CF-4CF2-BABC-CC8AB689CA47}
+	EndGlobalSection
+EndGlobal

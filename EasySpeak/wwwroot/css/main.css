@@ -1,0 +1,13 @@
+
+
+.clipped {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 50%);
+    background: linear-gradient(to right, #9B5DE5, #f3a683);
+    
+}
+
+@media (max-width: 576px) {
+    .clipped {
+        clip-path: none;
+    }
+}

@@ -1,0 +1,109 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<style>
+    .card {
+        border-radius: 10px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        transition: 0.3s;
+        margin-bottom: 20px;
+    }
+
+        .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        }
+
+    .card-body {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .card-title {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+        color: white;
+    }
+
+    .card-text {
+        font-size: 1.2rem;
+        text-align: center;
+        color:white;
+    }
+
+    .card-icon {
+        font-size: 3rem;
+        margin-bottom: 10px;
+        color: #fff;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+    .btn-1{
+        background-color: #3f51b5;
+        border-color: #3f51b5;
+    }
+    /* Custom colors for each card */
+    .card-1 {
+        background-color: #3f51b5;
+    }
+
+    .card-2 {
+        background-color: #e91e63;
+    }
+
+    .card-3 {
+        background-color: #30a5ff;
+    }
+  
+</style>
+
+<div class="container mt-5">
+    <h2 class="mb-5">Admin Dashboard</h2>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card card-1">
+                <div class="card-body">
+                    <i class="fas fa-users card-icon"></i> <h5 class="card-title">Users Management</h5>
+                    <p class="card-text">Total Users: @ViewData["TotalUsers"]</p>
+                </div>
+                <div class="card-footer">
+                    <a href="@Url.Action("Index", "Users")" class="btn btn-outline-light">
+                        Manage Users
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card card-2">
+                <div class="card-body">
+                    <i class="fas fa-sign-in-alt card-icon"></i> <h5 class="card-title">Join Requests Management</h5>
+                    <p class="card-text">Pending Requests: @ViewData["PendingRequests"]</p>
+                </div>
+                <div class="card-footer">
+                    <a href="@Url.Action("Index", "GroupJoinRequests")" class="btn btn-outline-light">
+                        Manage Join Requests
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card card-3">
+                <div class="card-body">
+                    <i class="fas fa-comments card-icon"></i> <h5 class="card-title">Chat Rooms Management</h5>
+                    <p class="card-text">Total Rooms: @ViewData["TotalRooms"]</p>
+                </div>
+                <div class="card-footer">
+                    <a href="@Url.Action("Index", "ChatRooms")" class="btn btn-outline-light">
+                        Manage Chat Rooms
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
